@@ -26,7 +26,7 @@ tag-patch: ci-user
 	git tag $(nextPatch)
 
 push-tags:
-	git push --tags https://c6dc37e396a8a4629bef7e472c2c8ffad7eb203c@github.com/aryszka/trtest
+	git push --tags https://$(github_auth)@github.com/aryszka/trtest
 
 release-major:
 	make version=$(nextMajor) build-version bump-major push-tags
