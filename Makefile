@@ -12,13 +12,17 @@ build-version:
 build:
 	make version=$(currentVersion) build-version
 
-tag-major:
+ci-user:
+	git config --global user.email "builds@travis-ci.com"
+	git config --global user.name "Travis CI"
+
+tag-major: ci-user
 	git tag $(nextMajor)
 
-tag-minor:
+tag-minor: ci-user
 	git tag $(nextMinor)
 
-tag-patch:
+tag-patch: ci-user
 	git tag $(nextPatch)
 
 push-tags:
