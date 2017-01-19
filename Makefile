@@ -29,13 +29,13 @@ push-tags:
 	git push --tags https://$(github_auth)@github.com/aryszka/trtest
 
 release-major:
-	make version=$(nextMajor) build-version bump-major push-tags
+	make version=$(nextMajor) build-version tag-major push-tags
 
 release-minor:
-	make version=$(nextMinor) build-version bump-minor push-tags
+	make version=$(nextMinor) build-version tag-minor push-tags
 
 release-patch:
-	make version=$(nextPatch) build-version bump-patch push-tags
+	make version=$(nextPatch) build-version tag-patch push-tags
 
 clean:
 	go clean -i ./...
