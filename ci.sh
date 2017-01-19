@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [[ "$TRAVIS_BRANCH" == master ]]; then
+if [[ "$TRAVIS_BRANCH" == master ]] && [[ "$TRAVIS_PULL_REQUEST" == false ]]; then
 	make release-patch
-else
+elif [[ "$TRAVIS_BRANCH" == master ]] && [[ "$TRAVIS_PULL_REQUEST" == false ]]; then
 	make check-precommit
 fi
