@@ -1,4 +1,4 @@
-currentVersion = $(shell git tag | tail -n1)
+currentVersion = $(shell git tag --sort=version:refname | tail -n1)
 nextMajor = $(shell go run packaging/version/version.go major $(currentVersion))
 nextMinor = $(shell go run packaging/version/version.go minor $(currentVersion))
 nextPatch = $(shell go run packaging/version/version.go patch $(currentVersion))
