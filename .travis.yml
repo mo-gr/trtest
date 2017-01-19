@@ -8,5 +8,5 @@ env:
 except:
   tags:
     /^v\d+[.]\d+[.]\d+.*/
-scripts:
-  ./travis-seriously.sh
+script:
+- make release-patch
