@@ -9,6 +9,5 @@ branches:
   except:
     /^v\d+[.]\d+[.]\d+.*/
 
-master:
-  script:
-  - make release-patch
+script:
+- ./ci.sh
