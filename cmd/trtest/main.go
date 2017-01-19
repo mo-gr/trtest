@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 
 	"github.com/aryszka/trtest"
 )
@@ -9,7 +10,6 @@ import (
 var (
 	version      string
 	commit       string
-	date         string
 	printVersion bool
 )
 
@@ -20,8 +20,8 @@ func init() {
 
 func versionString() string {
 	return fmt.Sprintf(
-		"trtest version %s (commit: %s, build time: %s)",
-		version, commit, date,
+		"trtest version %s (commit: %s)",
+		version, commit,
 	)
 }
 
