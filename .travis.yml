@@ -9,4 +9,4 @@ except:
   tags:
     /^v\d+[.]\d+[.]\d+.*/
 scripts:
-  - release-patch
+  make release-patch
