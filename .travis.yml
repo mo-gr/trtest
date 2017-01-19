@@ -8,5 +8,7 @@ env:
 branches:
   except:
     /^v\d+[.]\d+[.]\d+.*/
-script:
-- make release-patch
+
+master:
+  script:
+  - make release-patch
