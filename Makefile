@@ -1,18 +1,37 @@
-currentVersion = $(shell git describe --tags)
+currentVersion = $(shell git tag | tail -n1)
 nextMajor = $(shell go run packaging/version/version.go major $(currentVersion))
 nextMinor = $(shell go run packaging/version/version.go minor $(currentVersion))
 nextPatch = $(shell go run packaging/version/version.go patch $(currentVersion))
+commit = $(shell git rev-parse --short HEAD)
 
-init:
+default: build
 
-version:
-	echo $(currentVersion) $(nextMajor) $(nextMinor) $(nextPatch)
+build-version:
+	go install -ldflags "-X main.version=$(version) -X main.commit=$(commit)" ./...
+
+build:
+	make version=$(currentVersion) build-version
+
+bump-major:
+	git tag $(nextMajor)
 
 bump-minor:
-	git tag $(nextPatch)
+	git tag $(nextMinor)
 
 bump-patch:
 	git tag $(nextPatch)
 
 push-tags:
-	git push --tags https://3136c2700bdbd45bd7e93ec88756a6f0be39bf3d@github.com/aryszka/trtest
+	git push --tags https://c6dc37e396a8a4629bef7e472c2c8ffad7eb203c@github.com/aryszka/trtest
+
+release-major:
+	make version=$(nextMajor) build-version bump-major push-tags
+
+release-minor:
+	make version=$(nextMinor) build-version bump-minor push-tags
+
+release-patch:
+	make version=$(nextPatch) build-version bump-patch push-tags
+
+clean:
+	go clean -i ./...
