@@ -12,13 +12,13 @@ build-version:
 build:
 	make version=$(currentVersion) build-version
 
-bump-major:
+tag-major:
 	git tag $(nextMajor)
 
-bump-minor:
+tag-minor:
 	git tag $(nextMinor)
 
-bump-patch:
+tag-patch:
 	git tag $(nextPatch)
 
 push-tags:

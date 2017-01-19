@@ -1,0 +1,13 @@
+sudo: false
+
+language: go
+
+go:
+- 1.7.3
+
+env:
+  global:
+    secure: p6IFk5iq+MWR6vEWbEJF1ID0lWdnL1OCBFbvLDJdLUBxv4rlRGFAfWXtohJpuG6wadn9HRfpSlid4+UZCtI6vCYyQK0Lvr65P8z921HsKeSa9eaSKoP2SwfHtc2Y5ef7A/9iib5AjEUBaZ66XYDv5VU6eVBB8vjyQUyT7HpLGZiUbZdh0FWQl9xOKsLG8UuGDtaYkjBdr+6Vc/tZZzXcwJ5trbeX5Mh7g+nPTDgIRVUvaNdeRgZlO8xcVkJDNpp/JtSsa0MXMW3rowyzI/ZXF0Hho4HZc0f3bQnvJLbaKChpmUh74ylHSxzm9ruRUOg8yanJdilDRX1GNb5C9ksAJ4tc/MUhtAzk3TxTdBdh7yStwnvaGFC0RK5UcEjKMiIbuHKBDqgD8ddqxwV50/DuCtUrFY/lXFZSlDacOpfnX08qSDqMY9gUOwmQyKkYpzipNvJhZdIYcPtOG9bYOJlv5tozdBo5TL0XOj9g/n4Gq0N+qTfL1vwdaWkKvmO3zozybhlbVlVOMO1L9Ba8/FmQ9x8KPskFM7Hoq9Lk5+ifcIJX8+XKhI1Bmb+iMqTBdUVldTKgvs/cQBk0tVpl7vdCiQdhfaUqyS0GDxpi/XRFAsLb9or/qxvVlrYzT3nDQypR7ouWJJ42firxhyEg0EOM8N+dLUD88n7B2K6a/yJ+EnQ=
+
+scripts:
+- make
