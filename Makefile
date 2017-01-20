@@ -22,26 +22,31 @@ ci-user:
 	git config --global user.email "builds@travis-ci.com"
 	git config --global user.name "Travis CI"
 
-tag-major: ci-user
-	git tag $(nextMajor)
-
-tag-minor: ci-user
-	git tag $(nextMinor)
-
-tag-patch: ci-user
-	git tag $(nextPatch)
+tag: ci-user
+	git tag $(version)
 
 push-tags:
 	git push --tags https://$(github_auth)@github.com/aryszka/trtest
 
 release-major:
-	make version=$(nextMajor) build-version tag-major push-tags
+	make version=$(nextMajor) build-version tag push-tags
 
 release-minor:
-	make version=$(nextMinor) build-version tag-minor push-tags
+	make version=$(nextMinor) build-version tag push-tags
 
 release-patch:
-	make version=$(nextPatch) build-version tag-patch push-tags
+	make version=$(nextPatch) build-version tag push-tags
 
 check-precommit: check
 	go vet ./...
+
+ci-trigger:
+	ifeq ($(TRAVIS_BRANCH), master)
+		ifeq ($(TRAVIS_PULL_REQUEST), false)
+			make release-patch
+		else
+			make check-precommit
+		endif
+	else
+		make check
+	endif
