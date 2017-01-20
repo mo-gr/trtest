@@ -38,8 +38,11 @@ func inc(cmd string, major, minor, patch *int) {
 	switch cmd {
 	case cmdMajor:
 		*major++
+		*minor = 0
+		*patch = 0
 	case cmdMinor:
 		*minor++
+		*patch = 0
 	case cmdPatch:
 		*patch++
 	}
