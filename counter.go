@@ -1,3 +1,3 @@
 package trtest
 
-const counter = 5
+const counter = 6
