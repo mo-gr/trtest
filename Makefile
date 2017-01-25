@@ -1,22 +1,34 @@
+SOURCES =        $(shell find . -name '*.go')
 currentVersion = $(shell git tag | sort -V | tail -n1)
-nextMajor = $(shell go run packaging/version/version.go major $(currentVersion))
-nextMinor = $(shell go run packaging/version/version.go minor $(currentVersion))
-nextPatch = $(shell go run packaging/version/version.go patch $(currentVersion))
-commit = $(shell git rev-parse --short HEAD)
+nextMajor =      $(shell go run packaging/version/version.go major $(currentVersion))
+nextMinor =      $(shell go run packaging/version/version.go minor $(currentVersion))
+nextPatch =      $(shell go run packaging/version/version.go patch $(currentVersion))
+commit =         $(shell git rev-parse --short HEAD)
 
 default: build
 
 build-version:
 	go install -ldflags "-X main.version=$(version) -X main.commit=$(commit)" ./...
 
-build:
+build: $(SOURCES)
 	make version=$(currentVersion) build-version
 
-check:
+check: build
 	go test ./...
 
-clean:
-	go clean -i ./...
+fmt: $(SOURCES)
+	gofmt -w $(SOURCES)
+
+check-fmt: $(SOURCES)
+	if [[ $$(gofmt -d $(SOURCES)) ]]; then false; else true; fi
+
+vet: $(SOURCES)
+	go vet ./...
+
+precommit: build check fmt vet
+
+check-precommit: build check check-fmt vet
+	go vet ./...
 
 ci-user:
 	git config --global user.email "builds@travis-ci.com"
@@ -36,9 +48,6 @@ release-minor:
 
 release-patch:
 	make version=$(nextPatch) build-version tag push-tags
-
-check-precommit: check
-	go vet ./...
 
 ci-trigger:
 ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST)_$(findstring major-release,$(TRAVIS_COMMIT_MESSAGE)), master_false_major-release)
