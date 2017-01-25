@@ -37,7 +37,7 @@ tag: ci-user
 	git tag $(version)
 
 push-tags:
-	echo 'ssh -i /path/to/ssh/secret/key $1 $2' > gitsshwrap
+	echo 'ssh -i trtest $1 $2' > gitsshwrap
 	chmod +x gitsshwrap
 	GIT_SSH=gitsshwrap git push --tags https://$(github_auth)@github.com/aryszka/trtest
 
