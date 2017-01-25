@@ -8,6 +8,7 @@ env:
 branches:
   except:
     /^v\d+[.]\d+[.]\d+.*/
+    /^[[]major-release[]].*/
 
 script:
 - make ci-trigger

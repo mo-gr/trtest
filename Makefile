@@ -41,12 +41,10 @@ check-precommit: check
 	go vet ./...
 
 ci-trigger:
-	ifeq ($(TRAVIS_BRANCH), master)
-		ifeq ($(TRAVIS_PULL_REQUEST), false)
-			make release-patch
-		else
-			make check-precommit
-		endif
-	else
-		make check
-	endif
+ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST), master_false)
+	make release-patch
+else ifeq ($(TRAVIS_BRANCH), master)
+	make check-precommit
+else
+	make check
+endif
