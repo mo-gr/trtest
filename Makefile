@@ -41,9 +41,9 @@ check-precommit: check
 	go vet ./...
 
 ci-trigger:
-ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST)_$(findstring [major-release],$(TRAVIS_COMMIT_MESSAGE)), master_false_[major-release])
+ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST)_$(findstring major-release,$(TRAVIS_COMMIT_MESSAGE)), master_false_major-release)
 	make release-major
-else ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST)_$(findstring [minor-release],$(TRAVIS_COMMIT_MESSAGE)), master_false_[minor-release])
+else ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST)_$(findstring minor-release,$(TRAVIS_COMMIT_MESSAGE)), master_false_minor-release)
 	make release-minor
 else ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST), master_false)
 	make release-patch
