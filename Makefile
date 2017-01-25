@@ -50,9 +50,9 @@ endif
 ci-trigger:
 ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST)_$(findstring [major-release],$(TRAVIS_COMMIT_MESSAGE)), master_false_[major-release])
 	make release-major
-ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST)_$(findstring [minor-release],$(TRAVIS_COMMIT_MESSAGE)), master_false_[minor-release])
+else ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST)_$(findstring [minor-release],$(TRAVIS_COMMIT_MESSAGE)), master_false_[minor-release])
 	make release-minor
-ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST), master_false)
+else ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST), master_false)
 	make release-patch
 else ifeq ($(TRAVIS_BRANCH), master)
 	make check-precommit
