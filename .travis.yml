@@ -7,7 +7,9 @@ env:
   - secure: SLW0UahrbCusHKsLWnHjMulVvAB7LipVnqQQ3x4qSRnVgex3MwXNQZwSxmvyOOWkW0wrtbBBUTL2+4UF3WfwV9ypRHe2tlsAwnIsIn/I8IpB0Vr92YZW115i/txtzZ57/wiPHCLHkxQ7a7zSwWUnjxJeOjtttaidGt1Qhx9wzUzRh3ZTjuOfUA2aHR5kBogw/WC+84FRT0UYsyqB0oodN/1FGP65Wmzy5dNycDV0wUX2srS78XEj0HFoshPiy6IfE1T9IfPTxCTuXK0uFyBjNGH0ij+ALsnG8iotWoeDOSBlsp1qfTPO24e85vBUGT7JMmkRczTQgFI93+VVJmeFdRdtr6XO+e/7Gi2npeBqAP1gXxvHKmcC7TMWIg2WlUcBlgcQatEbixjiK7piqh1gVQ3u02I62vN0QMyxPzc+md2OItY6fh/KLRoW2877MToA+LrNk5uFkoWgSEY2K2f5RlzYVwoZ7tQcpATA3AZNyqVZ2w6gG9JNjdFrN6M+54d5FyIJ04Xp7aEAzDJV2YcxDywwMgkF2UnaQKAQSxq8qO2aji2AEjfFJHhfLfP/RKn0QaQsQ5oyHJH4B0lM6bjNkESRJV0jlbrAivtjkxo9RvWwzYliDXj1m+py8E31bRjzWaqe/nyruMOm6SzlRmf28KfB6T/sCwXOM04P6Tc6rrA=
 branches:
   except:
-    - /^(v\d+[.]\d+[.]\d+)|([[]minor-release[]])|([[]major-release[]]).*/
+    - /^v\d+[.]\d+[.]\d+.*/
+    - /^\[minor-release\].*/
+    - /^\[major-release\].*/
 
 script:
 - make ci-trigger
