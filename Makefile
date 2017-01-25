@@ -40,13 +40,6 @@ release-patch:
 check-precommit: check
 	go vet ./...
 
-print:
-ifeq ($(findstring [minor-release],something with [minor-release] in it),[minor-release])
-	echo minor
-else
-	echo not
-endif
-
 ci-trigger:
 ifeq ($(TRAVIS_BRANCH)_$(TRAVIS_PULL_REQUEST)_$(findstring [major-release],$(TRAVIS_COMMIT_MESSAGE)), master_false_[major-release])
 	make release-major
