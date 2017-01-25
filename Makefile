@@ -37,7 +37,7 @@ tag: ci-user
 	git tag $(version)
 
 push-tags:
-	GIT_SSH_COMMAND='ssh -i deploy.key' git push --tags git@github.com:aryszka/trtest
+	git push --tags https://$(github_auth)@github.com/aryszka/trtest
 
 release-major:
 	make version=$(nextMajor) build-version tag push-tags
