@@ -20,7 +20,7 @@ fmt: $(SOURCES)
 	gofmt -w $(SOURCES)
 
 check-fmt: $(SOURCES)
-	if [[ $$(gofmt -d $(SOURCES)) ]]; then false; else true; fi
+	if [ "$$(gofmt -d $(SOURCES))" != "" ]; then false; else true; fi
 
 vet: $(SOURCES)
 	go vet ./...
@@ -28,7 +28,6 @@ vet: $(SOURCES)
 precommit: build check fmt vet
 
 check-precommit: build check check-fmt vet
-	go vet ./...
 
 ci-user:
 	git config --global user.email "builds@travis-ci.com"
