@@ -37,7 +37,9 @@ tag: ci-user
 	git tag $(version)
 
 push-tags:
-	git push --tags https://$(github_auth)@github.com/aryszka/trtest
+	echo 'ssh -i /path/to/ssh/secret/key $1 $2' > gitsshwrap
+	chmod +x gitsshwrap
+	GIT_SSH=gitsshwrap git push --tags https://$(github_auth)@github.com/aryszka/trtest
 
 release-major:
 	make version=$(nextMajor) build-version tag push-tags
