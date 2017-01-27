@@ -13,7 +13,7 @@ build-version:
 build: $(SOURCES)
 	make version=$(currentVersion) build-version
 
-check: build
+check: build release-patch
 	go test ./...
 
 fmt: $(SOURCES)
